@@ -9,32 +9,32 @@ const productData = {
   'extra-plus': {
     name: 'Extra Plus',
     description: 'ระบบประตูที่แข็งแรงและทันสมัย',
-    pdf: '/pdfs/extraplus.pdf',
+    pdf: '/pdfs/Extra Plus.pdf',
   },
   euro: {
     name: 'Euro',
     description: 'ซีรีส์สำหรับงานยุโรป ดีไซน์พรีเมียม',
-    pdf: '/pdfs/euro.pdf',
+    pdf: '/pdfs/Euro.pdf',
   },
   'bi-fold-no1': {
     name: 'Bi-Fold No.1',
     description: 'บานพับแบบเต็มเปิดได้กว้าง',
-    pdf: '/pdfs/bifold1.pdf',
+    pdf: '/pdfs/Bi-Fold No.1.pdf',
   },
   'bi-fold-slim': {
     name: 'Bi-Fold Slim',
     description: 'รุ่นบางพิเศษ เหมาะกับงานโมเดิร์น',
-    pdf: '/pdfs/bifoldslim.pdf',
+    pdf: '/pdfs/Bi-Fold Slim.pdf',
   },
   'slim-line': {
     name: 'Slim Line',
     description: 'เส้นโปรไฟล์บางและหรู',
-    pdf: '/pdfs/slimline.pdf',
+    pdf: '/pdfs/Slim Line.pdf',
   },
   'open-slim': {
     name: 'Open Slim',
     description: 'เปิดได้สุดขอบ กรอบบางเฉียบ',
-    pdf: '/pdfs/openslim.pdf',
+    pdf: '/pdfs/Open Slim.pdf',
   },
 };
 
