@@ -1,0 +1,13 @@
+import { useRouter } from 'next/router'
+
+export default function ProductDetail() {
+  const router = useRouter()
+  const { slug } = router.query
+
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center bg-white px-4">
+      <h1 className="text-4xl font-bold mb-6">รายละเอียดสินค้า</h1>
+      <p className="text-xl text-gray-700">คุณกำลังดูสินค้า: <span className="font-semibold">{slug}</span></p>
+    </div>
+  )
+}
