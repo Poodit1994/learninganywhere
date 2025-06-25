@@ -1,3 +1,4 @@
+// pages/_app.js
 import Script from 'next/script';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
