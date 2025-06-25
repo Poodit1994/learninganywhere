@@ -41,12 +41,20 @@ const productData = {
 export default function ProductDetailPage() {
   const router = useRouter();
   const { slug } = router.query;
-
   const product = productData[slug];
 
   if (!product) {
     return <p style={{ textAlign: 'center', padding: '2rem' }}>ไม่พบข้อมูลรุ่นนี้</p>;
   }
+
+  const handleOpenPDF = () => {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'open_pdf', {
+        file_name: product.pdf,
+        product: product.name,
+      });
+    }
+  };
 
   return (
     <div style={{ maxWidth: '700px', margin: '0 auto', padding: '2rem', textAlign: 'center' }}>
@@ -58,6 +66,7 @@ export default function ProductDetailPage() {
           href={product.pdf}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={handleOpenPDF}
           style={{
             display: 'inline-block',
             padding: '10px 20px',

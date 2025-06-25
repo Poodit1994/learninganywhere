@@ -27,8 +27,8 @@ export default function CatalogPage() {
         }}
       >
         {products.map((item, index) => (
-          <Link key={index} href={`/products/${item.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-            <div style={{ textAlign: 'center', cursor: 'pointer' }}>
+          <Link key={index} href={`/products/${item.slug}`} legacyBehavior>
+            <a style={{ textDecoration: 'none', color: 'inherit', textAlign: 'center' }}>
               <img
                 src={item.image}
                 alt={item.name}
@@ -39,7 +39,7 @@ export default function CatalogPage() {
                 }}
               />
               <div style={{ marginTop: '0.5rem', fontWeight: 'bold' }}>{item.name}</div>
-            </div>
+            </a>
           </Link>
         ))}
       </div>
