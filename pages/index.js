@@ -1,26 +1,24 @@
-import { useRouter } from 'next/router'
+// pages/index.js
+import { event } from '../lib/analytics';
 
-export default function Home() {
-  const router = useRouter()
-
-  const handleSelect = (userType) => {
-    localStorage.setItem('userType', userType)
-    router.push('/select')
-  }
+export default function HomePage() {
+  const handleSelect = (role) => {
+    event({
+      action: 'select_role',
+      category: 'User',
+      label: role,
+    });
+    console.log('เลือกบทบาท:', role);
+  };
 
   return (
-    <div style={{ backgroundColor: '#dbe1e8', height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-      <h1 style={{ fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem' }}>คุณคือใคร?</h1>
-      <button onClick={() => handleSelect('technician')} style={buttonStyle}>✅ ช่าง</button>
-      <button onClick={() => handleSelect('owner')} style={buttonStyle}>✅ เจ้าของกิจการ</button>
-      <button onClick={() => handleSelect('general')} style={buttonStyle}>✅ ผู้สนใจทั่วไป</button>
+    <div style={{ textAlign: 'center', paddingTop: '3rem' }}>
+      <h1 style={{ fontSize: '2rem', marginBottom: '2rem' }}>คุณคือใคร?</h1>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+        <button onClick={() => handleSelect('ช่าง')}>ช่าง</button>
+        <button onClick={() => handleSelect('เจ้าของกิจการ')}>เจ้าของกิจการ</button>
+        <button onClick={() => handleSelect('ผู้สนใจทั่วไป')}>ผู้สนใจทั่วไป</button>
+      </div>
     </div>
-  )
-}
-
-const buttonStyle = {
-  margin: '10px',
-  padding: '15px 30px',
-  fontSize: '18px',
-  cursor: 'pointer'
+  );
 }
