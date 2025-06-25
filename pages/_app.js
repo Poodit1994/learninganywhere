@@ -1,12 +1,7 @@
-import '@/styles/globals.css'
-
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />
-}
 import Script from 'next/script';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import * as ga from '../lib/analytics'; // ชี้ไปยังไฟล์ที่สร้าง
+import * as ga from '../lib/analytics';
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -23,7 +18,6 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      {/* โหลด Google Analytics Script */}
       <Script
         strategy="afterInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=${ga.GA_MEASUREMENT_ID}`}
@@ -33,13 +27,13 @@ function MyApp({ Component, pageProps }) {
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${ga.GA_MEASUREMENT_ID}', {
-            page_path: window.location.pathname,
-          });
-        `,
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${ga.GA_MEASUREMENT_ID}', {
+              page_path: window.location.pathname,
+            });
+          `,
         }}
       />
       <Component {...pageProps} />
