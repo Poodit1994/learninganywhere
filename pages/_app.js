@@ -1,24 +1,47 @@
-// pages/_app.js
+import '@/styles/globals.css'
+
+export default function App({ Component, pageProps }) {
+  return <Component {...pageProps} />
+}
 import Script from 'next/script';
-import '../styles/globals.css';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import * as ga from '../lib/analytics'; // ชี้ไปยังไฟล์ที่สร้าง
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      ga.pageview(url);
+    };
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
+
   return (
     <>
-      {/* Google Analytics */}
+      {/* โหลด Google Analytics Script */}
       <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=G-TPH1VDFXZW`}
         strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=${ga.GA_MEASUREMENT_ID}`}
       />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
+      <Script
+        id="gtag-init"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'G-TPH1VDFXZW');
-        `}
-      </Script>
-
+          gtag('config', '${ga.GA_MEASUREMENT_ID}', {
+            page_path: window.location.pathname,
+          });
+        `,
+        }}
+      />
       <Component {...pageProps} />
     </>
   );
